@@ -1,12 +1,14 @@
 services:
   - type: web
-    name: vishal-music-bot
+    name: aadhya-music-bot
     runtime: python
     plan: free
     buildCommand: "pip install -U pip && pip install -r requirements.txt"
     startCommand: "python3 -m VishalMusic"
     healthCheckPath: /health
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.10.13"
       - key: PYTHONUNBUFFERED
         value: "1"
       - key: API_ID
@@ -24,6 +26,6 @@ services:
       - key: LOGGER_ID
         sync: false
       - key: YOUTUBE_API_1
-        sync: false
+        value: "https://api.alonexraj.shop"
       - key: YOUTUBE_API_KEY_1
         sync: false
