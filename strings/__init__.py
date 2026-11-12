@@ -1,0 +1,50 @@
+# ═══════════════════════════════════════════════════════════
+#        🌺 Vɪsʜᴀʟ Mᴜsɪᴄ 🌺
+#   GɪᴛHᴜʙ : github.com/ItsMeVishal0/VishalMusic
+#   Dᴇᴠʟᴏᴘᴇʀ : @ItsMeVishalBots | Telegram
+# ═══════════════════════════════════════════════════════════
+
+import os
+import yaml
+try:
+    from yaml import CSafeLoader as SafeLoader
+except ImportError:
+    from yaml import SafeLoader
+
+languages = {}
+languages_present = {}
+
+
+def get_string(lang: str):
+    return languages.get(lang, languages.get("en", {}))
+
+lang_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "langs")
+
+for filename in os.listdir(lang_path):
+    if "en" not in languages:
+        with open(os.path.join(lang_path, "en.yml"), encoding="utf8") as f:
+            languages["en"] = yaml.load(f, Loader=SafeLoader)
+        languages_present["en"] = languages["en"].get("name", "English")
+
+    if filename.endswith(".yml"):
+        language_name = filename[:-4]
+        if language_name == "en":
+            continue
+        with open(os.path.join(lang_path, filename), encoding="utf8") as f:
+            languages[language_name] = yaml.load(f, Loader=SafeLoader)
+
+        # Fill missing keys from English
+        for item in languages["en"]:
+            if item not in languages[language_name]:
+                languages[language_name][item] = languages["en"][item]
+
+        # Safely set display name
+        lang_display = languages[language_name].get("name", language_name)
+        languages_present[language_name] = lang_display
+
+print(f"[INFO] Loaded {len(languages_present)} languages: {', '.join(languages_present.keys())}")
+
+# ═══════════════════════════════════════════════════════════
+#         🌺 Vɪsʜᴀʟ Mᴜsɪᴄ 🌺
+#   github.com/ItsMeVishal0/VishalMusic
+# ═══════════════════════════════════════════════════════════

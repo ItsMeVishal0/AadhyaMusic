@@ -1,0 +1,59 @@
+# ═══════════════════════════════════════════════════════════
+#        🌺 Vɪsʜᴀʟ Mᴜsɪᴄ 🌺
+#   GɪᴛHᴜʙ : github.com/ItsMeVishal0/VishalMusic
+#   Dᴇᴠʟᴏᴘᴇʀ : @ItsMeVishalBots | Telegram
+# ═══════════════════════════════════════════════════════════
+
+import random
+from pyrogram import filters
+import config
+from VishalMusic import app
+from VishalMusic.utils.colored_buttons import (
+    styled_button,
+    buttons_to_inline_markup,
+    smart_send_photo as send_photo_colored,
+)
+from config import BOT_USERNAME
+
+repo_caption = """**
+🚀 ᴄʟᴏɴᴇ ᴀɴᴅ ᴅᴇᴘʟᴏʏ – 🚀
+
+➤ ᴅᴇᴘʟᴏʏ ᴇᴀsɪʟʏ ᴏɴ ʜᴇʀᴏᴋᴜ ᴡɪᴛʜᴏᴜᴛ ᴇʀʀᴏʀꜱ  
+➤ ɴᴏ ʜᴇʀᴏᴋᴜ ʙᴀɴ ɪꜱꜱᴜᴇ  
+➤ ɴᴏ ɪᴅ ʙᴀɴ ɪꜱꜱᴜᴇ   
+➤ ᴜɴʟɪᴍɪᴛᴇᴅ ᴅʏɴᴏꜱ  
+➤ ʀᴜɴ 24/7 ʟᴀɢ ꜰʀᴇᴇ
+
+ɪꜰ ʏᴏᴜ ꜰᴀᴄᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ, ꜱᴇɴᴅ ꜱꜱ ɪɴ ꜱᴜᴘᴘᴏʀᴛ
+**"""
+
+
+
+@app.on_message(filters.command("repo"))
+async def show_repo(_, msg):
+    buttons = [
+        [styled_button("➕ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✨", url=f"https://t.me/{BOT_USERNAME}?startgroup=true", style="success")],
+        [
+            styled_button("👑 ᴏᴡɴᴇʀ", url="https://t.me/ItsMeVishalBots", style="primary"),
+            styled_button("💬 ꜱᴜᴘᴘᴏʀᴛ", url="https://t.me/ItsMeVishalBots", style="primary"),
+        ],
+        [
+            styled_button("🛠️ ꜱᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ", url="https://t.me/ItsMeVishalBots", style="primary"),
+            styled_button("🎵 ɢɪᴛʜᴜʙ", url="https://github.com/ItsMeVishal0/VishalMusic", style="primary"),
+        ],
+    ]
+
+    try:
+        await send_photo_colored(
+            chat_id=msg.chat.id,
+            photo=random.choice(config.START_IMGS),
+            caption=repo_caption,
+            reply_markup=buttons,
+        )
+    except:
+        pass
+
+# ═══════════════════════════════════════════════════════════
+#         🌺 Vɪsʜᴀʟ Mᴜsɪᴄ 🌺
+#   github.com/ItsMeVishal0/VishalMusic
+# ═══════════════════════════════════════════════════════════

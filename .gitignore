@@ -1,0 +1,12 @@
+.env
+*.session
+*.session-journal
+__pycache__/
+*.py[cod]
+*$py.class
+downloads/
+cache/
+raw_files/
+log.txt
+*.log
+.DS_Store
